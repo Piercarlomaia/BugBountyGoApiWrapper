@@ -47,13 +47,13 @@ func GetPreviousURLs(ctx context.Context, rdb *redis.Client) ([]string, error) {
 }
 
 // saveURLsToRedis saves the unique URLs to Redis as JSON
-func SaveURLsToRedis(ctx context.Context, rdb *redis.Client, urls []string) error {
+func SaveURLsToRedis(key string, ctx context.Context, rdb *redis.Client, urls []string) error {
 	data, err := json.Marshal(urls)
 	if err != nil {
 		return fmt.Errorf("error marshaling URLs to JSON: %v", err)
 	}
 
-	err = rdb.Set(ctx, "hackerone:previous_urls", data, 7*24*time.Hour).Err()
+	err = rdb.Set(ctx, key, data, 7*24*time.Hour).Err()
 	if err != nil {
 		return fmt.Errorf("error saving to Redis: %v", err)
 	}

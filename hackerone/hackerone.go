@@ -256,7 +256,7 @@ func main() {
 			fmt.Println("No previous URLs found, initializing Redis with current URLs...")
 
 			// Initialize Redis with current unique URLs
-			err = redismethods.SaveURLsToRedis(ctx, rdb, currentUnique)
+			err = redismethods.SaveURLsToRedis("hackerone:previous_urls", ctx, rdb, currentUnique)
 			if err != nil {
 				fmt.Println("Error initializing Redis:", err)
 			} else {
@@ -316,7 +316,7 @@ func main() {
 		}
 
 		// Save current unique URLs as the new previous state
-		err = redismethods.SaveURLsToRedis(ctx, rdb, currentUnique)
+		err = redismethods.SaveURLsToRedis("hackerone:previous_urls", ctx, rdb, currentUnique)
 		if err != nil {
 			fmt.Println("Error saving URLs to Redis:", err)
 		} else {
