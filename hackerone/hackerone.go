@@ -264,7 +264,6 @@ func main() {
 			}
 
 			// Wait for next tick and continue
-			<-ticker.C
 			continue
 		}
 
@@ -325,8 +324,6 @@ func main() {
 		}
 
 		fmt.Printf("Waiting for next run at %s...\n", time.Now().Add(5*time.Minute).Format("15:04:05"))
-
-		// Wait for next tick
-		<-ticker.C
+		time.Sleep(5 * time.Minute)
 	}
 }
