@@ -195,7 +195,7 @@ func compareAndSave(ctx context.Context, rdb *redis.Client, current []string) {
 
 		// Send removed subdomains in chunks of 10
 		if len(removed) > 0 {
-			sendInChunks(ctx, rdb, removed, "🗑️ Removed Subdomains", 30)
+			//sendInChunks(ctx, rdb, removed, "🗑️ Removed Subdomains", 30)
 		}
 
 		fmt.Println("All notifications sent to Telegram")
